@@ -4,11 +4,11 @@ import router from './router'
 import store from './store'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
-
-Vue.config.productionTip = false
+/* eslint-disable */
+Vue.config.productionTip = false;
 Vue.use(Antd);
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

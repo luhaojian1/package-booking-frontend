@@ -4,7 +4,8 @@
       <a-button v-for="(filter,i) in filters"
                 :key="i" :value="filter"
                 :filter="filter"
-                @click=" clickFilterButton(filter)">{{filter}}
+                @click=" clickFilterButton(filter)"
+                type="primary">{{filter}}
       </a-button>
     </div>
   </div>
@@ -30,6 +31,8 @@
   }
 </script>
 
-<style scoped>
-
+<style>
+button{
+  margin-right: 10px;
+}
 </style>

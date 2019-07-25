@@ -1,11 +1,11 @@
 <template>
-   <tr>
+   <tr style="margin-bottom: 10px;">
      <td>{{good.goodId}}</td>
      <td>{{good.customerName}}</td>
      <td>{{good.phoneNumber}}</td>
      <td>{{good.goodStatus}}</td>
-     <td>{{good.appointmentTime}}</td>
-     <td><button class="primary" @click="receiptGood" v-show="judgeReceipt">确认收货</button></td>
+     <td>{{date}}</td>
+     <td><button class="primary" @click="receiptGood" v-show="good.goodStatus !== '已取件'">确认收货</button></td>
    </tr>
 </template>
 
@@ -17,7 +17,8 @@
       },
       data(){
         return{
-          isReceipt:true
+          isNotReceipt:true,
+          date:new Date(this.good.appointmentTime).toLocaleDateString()==="false	"?new Date(this.good.appointmentTime).toLocaleDateString():''
         }
       },
       methods:{
@@ -28,15 +29,13 @@
             phoneNumber:this.good.phoneNumber,
             goodStatus:"已取件"
           });
-          this.isReceipt = false;
         },
-        judgeReceipt: ()=>this.good.goodStatus === "未取件",
 
       }
     }
 </script>
 
-<style scoped>
+<style  >
 tr{
   margin: 5px;
 }

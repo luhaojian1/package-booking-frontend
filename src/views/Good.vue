@@ -1,30 +1,37 @@
 <template>
   <div class="container">
+    <div>
+      <a-button type="primary" @click="showModal">添加</a-button>
+      <a-modal
+        title="包裹入库"
+        :visible="visible"
+        @ok="handleOk"
+        :confirmLoading="confirmLoading"
+        @cancel="handleCancel"
+      >
+        <table cellspacing="10">
+          <tbody>
+          <tr>
+            <td>运单号：</td>
+            <td> <input type="text" name="goodId" v-model="goodId" /></td>
+          </tr>
+          <tr>
+            <td>收件人：</td>
+            <td> <input type="text" name="customerName" v-model="customerName"  /></td>
+          </tr>
+          <tr>
+            <td>电话：</td>
+            <td> <input type="text" name="phoneNumber" v-model="phoneNumber"  /></td>
+          </tr>
+          <tr>
+            <td>重量：</td>
+            <td><input type="number" name="weight" v-model="weight"  /></td>
+          </tr>
+          </tbody>
+        </table>
+      </a-modal>
+    </div>
 
-      <table>
-        <h2>包裹入库</h2>
-        <tbody>
-        <tr>
-          <td>运单号：</td>
-          <td> <input type="text" name="goodId" :value="goodId" @input="setGoodId"/></td>
-        </tr>
-        <tr>
-          <td>收件人：</td>
-          <td> <input type="text" name="customerName" :value="customerName" @input="setCustomerName"/></td>
-        </tr>
-        <tr>
-          <td>电话：</td>
-          <td> <input type="text" name="phoneNumber" :value="phoneNumber" @input="setPhoneNumber"/></td>
-        </tr>
-        <tr>
-          <td>重量：</td>
-          <td><input type="number" name="weight" :value="weight" @input="setWeight"/>KG</td>
-        </tr>
-        </tbody>
-      </table>
-      <div>
-        <button @click="addGood">添加</button>
-      </div>
 
   </div>
 </template>
@@ -37,27 +44,43 @@ export default {
       goodId:'',
       customerName:'',
       phoneNumber:'',
-      weight:0
+      weight:0.0,
+
+      visible: false,
+      confirmLoading: false,
     }
   },
   methods:{
-    setGoodId:()=>this.goodId = event.target.value,
-    setCustomerName:()=>this.customerName = event.target.vaule,
-    setPhoneNumber:()=>this.PhoneNumber = event.target.vaule,
-    setWeight:()=>this.weight = event.target.vaule,
-    addGood(){
+    showModal() {
+      this.visible = true
+    },
+    handleOk(e) {
       this.$store.dispatch('addGood',{
         goodId:this.goodId,
         customerName:this.customerName,
         phoneNumber:this.phoneNumber,
         weight:this.weight
-      })
-    }
+      });
+      this.goodId = '';
+      this.customerName= '';
+      this.phoneNumber = '';
+      this.weight = 0.0;
+
+      this.confirmLoading = true;
+      setTimeout(() => {
+        this.visible = false;
+        this.confirmLoading = false;
+      }, 300);
+    },
+    handleCancel(e) {
+      console.log('Clicked cancel button');
+      this.visible = false
+    },
   }
 }
 </script>
 
-<style scoped>
+<style >
 tr{
   margin: 10px 10px;
 }

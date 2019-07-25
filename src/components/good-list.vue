@@ -1,6 +1,6 @@
 <template>
 <div>
-  <table>
+  <table border="1" cellpadding="15">
     <thead>
       <th>运单号</th>
       <th>收件人</th>

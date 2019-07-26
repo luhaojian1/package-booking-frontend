@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+
     <good-list></good-list>
 
   </div>

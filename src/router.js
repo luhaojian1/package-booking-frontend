@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import GoodList from './views/GoodList'
-import Good from './views/Good'
+import CustomerView from "./views/CustomerView";
 /* eslint-disable */
+console.log(process.env.BASE_URL)
 
 Vue.use(Router);
 export default new Router({
@@ -13,17 +14,17 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      comment: Home,
+      component: Home,
     },
     {
       path: '/goodList',
       name: 'goodList',
-      comment: GoodList
+      component: GoodList
     },
     {
-      path: '/good',
-      name: 'good',
-      comment: Good
+      path: '/goodreservation',
+      name: 'goodReservation',
+      component: CustomerView
     },
   ]
 })

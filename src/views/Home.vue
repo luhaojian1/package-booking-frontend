@@ -8,6 +8,10 @@
             <a-icon type="folder" theme="filled"></a-icon>
             <span> <router-link to="/goodList">Goods列表</router-link></span>
           </a-menu-item>
+          <a-menu-item key="2">
+            <a-icon type="folder" theme="filled"></a-icon>
+            <span> <router-link to="/goodreservation">预约取件</router-link></span>
+          </a-menu-item>
         </a-menu>
       </a-layout-sider>
 
@@ -17,10 +21,8 @@
         <Good></Good>
         <BtnFilters></BtnFilters>
         <GoodList></GoodList>
-        <CustomerView></CustomerView>
       </a-layout-content>
 
-    </a-layout>
     </a-layout>
   </div>
 
@@ -42,19 +44,7 @@
     mounted() {
       this.userName = this.$store.getters.getUser
     },
-    beforeRouteLeave(to, from, next) {
-      const isBack = window.confirm('go back main?')
-      if (isBack) {
-        next()
-      } else {
-        next(false)
-      }
-    },
-    methods: {
-      backHome() {
-        this.$router.push('/')
-      }
-    }
+    methods: {}
   }
 </script>
 <style>

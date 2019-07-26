@@ -18,7 +18,7 @@
       data(){
         return{
           isNotReceipt:true,
-          date:new Date(this.good.appointmentTime).toLocaleDateString()==="false	"?new Date(this.good.appointmentTime).toLocaleDateString():''
+          date: this.good.appointmentTime !== 0 ? new Date(this.good.appointmentTime).toLocaleString() : ''
         }
       },
       methods:{
@@ -27,6 +27,8 @@
             goodId:this.good.goodId,
             customerName:this.good.customerName,
             phoneNumber:this.good.phoneNumber,
+            appointmentTime: this.good.appointmentTime,
+            weight: this.good.weight,
             goodStatus:"已取件"
           });
         },

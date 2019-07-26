@@ -23,19 +23,17 @@
     data() {
       return {
         goodId: '',
-        appointmentTime: Date,
+        appointmentTime: 0,
       }
     },
     methods: {
       appointGoodTime() {
+
         this.$store.dispatch('reserveGood', {
           goodId: this.goodId,
-          appointmentTime:this.appointmentTime.getTime()
+          appointmentTime: new Date(this.appointmentTime).getTime()
         });
         this.goodId = '';
-        this.customerName = '';
-        this.phoneNumber = '';
-        this.weight = 0.0;
       }
     }
   }
@@ -44,10 +42,4 @@
 <style scoped>
 
 </style>
-<script>
-  import Table from "ant-design-vue/es/table/Table";
 
-  export default {
-    components: {Table}
-  }
-</script>
